@@ -2,31 +2,45 @@ import mongoose, { Schema } from "mongoose";
 
 const tappers_schema = new Schema(
     {
-        name: { type: String, required: true, index: true },
+        name: { type: String, },
 
-        phone: { type: Number, require: [true, "enter mobile number"] },
+        phone: { type: Number, },
 
-        address: { type: String, require: true },
+        place: { type: String, },
 
-        password: { type: String, required: true },
+        username: { type: String, },
+
+        password: { type: String, },
+
+        rating: { type: Number },
+
 
         refresh_token: { type: String },
 
-        // avatar: { type: String },
+        supplier: {
+            type: Schema.Types.ObjectId,
+            ref: "Suppliers",
+        },
 
-        suppliers : [
+        drivers: [
             {
                 type: Schema.Types.ObjectId,
-                ref: "Suppliers"
+                ref: "Drivers"
             }
         ],
-
-        drivers : [
+        latex: [
             {
                 type: Schema.Types.ObjectId,
-                ref:"Drivers"
+                ref: "Latex"
+            }
+        ],
+        tappingData: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: "TappingData"
             }
         ]
+
 
     },
     { timestamps: true }
